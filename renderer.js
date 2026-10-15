@@ -3,6 +3,7 @@ let remainingTime = null;
 
 const startButton = document.getElementById('startbutton');
 const pauseButton = document.getElementById('pausebutton');
+const resetButton = document.getElementById('resetbutton')
 const inputTime = document.getElementById('time');
 const display = document.getElementById('display');
 
@@ -21,7 +22,7 @@ startButton.addEventListener('click', function() {
     return
   }
   pauseButton.style.display = 'inline';
-
+  resetButton.style.display = 'inline';
 
   intervalId = setInterval(function() {
     remainingTime -= 1
@@ -43,5 +44,16 @@ pauseButton.addEventListener('click', function() {
     clearInterval(intervalId)
     intervalId = null
     startButton.textContent = 'Continue'
+  }
+})
+
+resetButton.addEventListener('click', function() {
+  if (intervalId != null) {
+    clearInterval(intervalId)
+    intervalId = null
+    startButton.textContent = 'Start'
+    remainingTime = null
+    inputTime.value = null
+    display.textContent = null
   }
 })
